@@ -53,20 +53,6 @@ The system will handle product data, user management, and API endpoints for filt
 
 ---
 
-## 🧩 Repository Structure
-
-alx-nexus-backend/
-│
-├── ecommerce/ # Main Django app
-├── products/ # Products & categories logic
-├── users/ # Authentication logic
-├── requirements.txt # Dependencies
-├── manage.py
-└── README.md
-
-
----
-
 ## 📄 API Deployment (coming soon)
 Swagger documentation will be hosted and shared once the API is deployed.
 
