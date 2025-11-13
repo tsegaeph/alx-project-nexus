@@ -1,67 +1,78 @@
-# 🧠 ALX Project Nexus — Backend Engineering Learnings
+# 🛒 E-Commerce Backend — ALX Project Nexus
 
-## 📚 Overview
-This repository documents the key concepts, technologies, and best practices I learned throughout the **ALX ProDev Backend Engineering Program**.  
-It serves as a knowledge hub and reflection on my backend journey — consolidating insights, challenges, and real-world problem-solving experiences.
+## Overview
+This project is part of the **ALX Project Nexus Backend Engineering** initiative.  
+It focuses on building a **robust, scalable, and secure e-commerce backend** using **Django**, **PostgreSQL**, and **JWT authentication**.  
 
----
-
-## 🧩 Major Learnings
-
-### ⚙️ Key Technologies
-- **Python** – Core programming language for backend development.  
-- **Django** – Web framework for building robust, scalable web applications.  
-- **Django REST Framework (DRF)** – For designing and implementing RESTful APIs.  
-- **GraphQL** – For flexible, efficient data querying and schema design.  
-- **Celery & RabbitMQ** – For asynchronous task processing and message queuing.  
-- **Docker** – For containerization and environment consistency.  
-- **CI/CD (GitHub Actions / Jenkins)** – For continuous integration, testing, and deployment.
+The system will handle product data, user management, and API endpoints for filtering, sorting, and pagination — simulating a real-world backend for an online store.
 
 ---
 
-### 🧱 Important Backend Concepts
-- **Database Design & Modeling** – Normalization, relationships, migrations, ORM usage.  
-- **Authentication & Authorization** – JWT, OAuth2, and session handling.  
-- **Asynchronous Programming** – Using Celery and async views for background tasks.  
-- **Caching Strategies** – Redis-based caching for faster response times.  
-- **System Design** – Scalability, fault tolerance, and service-oriented architecture.  
+## 🎯 Project Goals
+- **CRUD APIs** for managing products, categories, and users.  
+- **Filtering, Sorting, and Pagination** for efficient product discovery.  
+- **Optimized Database Design** with indexing for high performance.  
+- **JWT Authentication** for secure user login and access control.  
+- **API Documentation** using Swagger/OpenAPI.
 
 ---
 
-## 🚧 Challenges & Solutions
-
-| Challenge | Description | Solution |
-|------------|--------------|-----------|
-| Deploying Django with Celery & Redis | Celery workers failed to start in production | Used Redis as a broker on Render; configured worker Dynos with proper `--app` flags |
-| API Versioning | Breaking changes during development | Implemented versioning through DRF’s `DefaultVersioning` |
-| Handling Large File Uploads | Memory errors with large requests | Used Django `FileResponse` + S3-compatible storage for streaming |
-
----
-
-## 🌟 Best Practices & Personal Takeaways
-- Write **modular, testable code** following the **MVT architecture**.  
-- Use **environment variables** and `.env` files for managing secrets securely.  
-- Always set `DEBUG=False` in production and configure **CORS & ALLOWED_HOSTS** correctly.  
-- Implement **CI/CD pipelines** early to automate builds, testing, and deployment.  
-- Collaborate actively with **frontend peers** for API documentation and version control.  
-- Prioritize **clean commits**, meaningful messages, and detailed documentation.  
+## 🧱 Technologies Used
+- **Django** — Backend framework  
+- **PostgreSQL** — Relational database  
+- **JWT (JSON Web Token)** — Authentication  
+- **Swagger / drf-yasg** — API documentation  
+- **Docker (optional)** — Containerization  
 
 ---
 
+## ⚙️ Key Features
+1. **CRUD Operations**
+   - Products and Categories  
+   - User Authentication and Management  
 
-## 🏁 Conclusion
-This repository marks the completion of my **ALX Backend Engineering journey** — showcasing my growth from learning Python fundamentals to building scalable, production-ready backend systems.  
-I’m committed to applying these principles in real-world projects and continuing to evolve as a backend developer.
+2. **API Features**
+   - Filtering by category  
+   - Sorting by price  
+   - Pagination for large datasets  
+
+3. **Documentation**
+   - Auto-generated Swagger docs for easy frontend integration  
 
 ---
 
-## 🔗 Repository
-[GitHub: alx-project-nexus](https://github.com/tsegaeph/alx-project-nexus)
+## 🚀 Implementation Plan
+| Step | Description | Commit Message |
+|------|--------------|----------------|
+| 1 | Initialize Django project & connect PostgreSQL | `feat: set up Django project with PostgreSQL` |
+| 2 | Implement JWT Authentication | `feat: implement user authentication with JWT` |
+| 3 | Add Product & Category APIs | `feat: add product APIs with filtering and pagination` |
+| 4 | Integrate Swagger Documentation | `feat: integrate Swagger documentation for API endpoints` |
+| 5 | Optimize Queries | `perf: optimize database queries with indexing` |
+| 6 | Add API Usage Instructions | `docs: add API usage instructions in Swagger` |
+
+---
+
+## 🧩 Repository Structure
+
+alx-nexus-backend/
+│
+├── ecommerce/ # Main Django app
+├── products/ # Products & categories logic
+├── users/ # Authentication logic
+├── requirements.txt # Dependencies
+├── manage.py
+└── README.md
+
+
+---
+
+## 📄 API Deployment (coming soon)
+Swagger documentation will be hosted and shared once the API is deployed.
 
 ---
 
 ## 👤 Author
 **Tsega Ephrem Tilahun**  
-Backend Engineering Learner – ALX ProDev Program  
-📧 tsegaephrem@gmail.com  
-🌐 [Portfolio Website](https://tsega-ephrem.onrender.com)  
+ALX Backend Engineering Program  
+[GitHub: tsegaeph](https://github.com/tsegaeph)
