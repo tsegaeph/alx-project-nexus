@@ -112,16 +112,14 @@ body {
   gap: 1.5rem;
 }
 
-/* Right Side: Immersive Visual */
 .hero-visual {
   flex: 1;
   display: flex;
   justify-content: center;
   position: relative;
-  perspective: 1000px; /* Adds 3D depth */
+  perspective: 500px; /* Adds 3D depth */
 }
 
-/* The "Card" holding the product/image */
 .visual-card {
   width: 100%;
   max-width: 500px;

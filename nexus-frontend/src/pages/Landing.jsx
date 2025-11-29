@@ -1,11 +1,15 @@
-import React from "react";
+import React, { useState } from "react"; // 🔑 Import useState
 import { useNavigate } from "react-router-dom";
-import "../styles/theme.css"; // Ensure the CSS above is pasted here
-import "../styles/glass.css"; // Keep your original glass styles if needed
+import "../styles/theme.css"; 
+import "../styles/glass.css"; 
 import NeonButton from "../components/NeonButton";
 
 export default function Landing() {
   const nav = useNavigate();
+  const [isModalOpen, setIsModalOpen] = useState(false); // 🔑 State to control modal
+
+  const openModal = () => setIsModalOpen(true);
+  const closeModal = () => setIsModalOpen(false);
 
   return (
     <div className="landing-container">
@@ -16,7 +20,10 @@ export default function Landing() {
       {/* Simple Navbar for Professional Look */}
       <nav className="navbar">
         <div className="brand-logo">NEXUS</div>
-        <div style={{ color: "#94a3b8", fontSize: "0.9rem", cursor: "pointer" }}>
+        <div 
+          style={{ color: "#94a3b8", fontSize: "0.9rem", cursor: "pointer" }}
+          onClick={openModal} // 🔑 Open modal on click
+        >
           About Us
         </div>
       </nav>
@@ -44,15 +51,10 @@ export default function Landing() {
           </div>
         </div>
 
-        {/* Right Side: Immersive 3D Visual */}
         <div className="hero-visual">
           <div className="visual-card glass-card">
-            {/* PLACEHOLDER: Replace src with a transparent PNG of your product 
-               or a Spline 3D export for maximum effect.
-            */}
-            
             <img 
-              src="https://cdn3d.iconscout.com/3d/premium/thumb/virtual-reality-headset-4973688-4144206.png" 
+              src="/images/landing2.png" 
               alt="Futuristic Product" 
               className="visual-image"
             />
@@ -71,6 +73,67 @@ export default function Landing() {
           </div>
         </div>
       </div>
+      
+      {/* 🔑 ABOUT US MODAL */}
+      {isModalOpen && (
+        <div style={{
+          position: 'fixed',
+          top: 0,
+          left: 0,
+          right: 0,
+          bottom: 0,
+          backgroundColor: 'rgba(0, 0, 0, 0.7)', // Dark overlay
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+          zIndex: 1000
+        }}>
+          <div className="glass-card" style={{
+            padding: '30px',
+            maxWidth: '450px',
+            width: '90%',
+            borderRadius: '15px',
+            position: 'relative',
+            textAlign: 'center'
+          }}>
+            <button 
+              onClick={closeModal} 
+              style={{
+                position: 'absolute',
+                top: '10px',
+                right: '15px',
+                background: 'none',
+                border: 'none',
+                color: '#fff',
+                fontSize: '1.5rem',
+                cursor: 'pointer'
+              }}
+            >
+              &times;
+            </button>
+            <h3 style={{ color: '#acc7ed', fontWeight: 600, marginBottom: '15px', fontSize: '1.4rem' }}>
+              Project Showcase 🚀
+            </h3>
+            <p style={{ color: '#b3ccf7', lineHeight: '1.5', marginBottom: '25px' }}>
+              This e-commerce platform was developed as the final project for the 
+              **ALX Pro Dev Backend Program**.
+            </p>
+            <p style={{ color: '#b3ccf7', lineHeight: '1.5', marginBottom: '20px' }}>
+              Through this project, I gained extensive experience in:
+            </p>
+            <ul style={{ color: '#a6bbfe', textAlign: 'left', listStyleType: 'none', paddingLeft: '20px' }}>
+                <li style={{ marginBottom: '8px' }}>✅ Designing RESTful APIs with Python/Django.</li>
+                <li style={{ marginBottom: '8px' }}>✅ Implementing Authentication, Permissions, and JWT.</li>
+                <li style={{ marginBottom: '8px' }}>✅ Database management and Query Optimization.</li>
+                <li style={{ marginBottom: '8px' }}>✅ Advanced filtering and search functionality.</li>
+            </ul>
+            <p style={{ color: '#94a3b8', fontSize: '0.9rem', marginTop: '30px' }}>
+              A successful journey into professional backend development.
+            </p>
+          </div>
+        </div>
+      )}
+
     </div>
   );
 }
