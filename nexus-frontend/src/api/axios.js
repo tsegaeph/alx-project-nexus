@@ -2,10 +2,11 @@
 
 import axios from "axios";
 
-const baseURL = "http://127.0.0.1:8000/api/";
+const BASE_URL = import.meta.env.VITE_BACKEND_URL || "http://127.0.0.1:8000";
+const API_URL = `${BASE_URL}/api/`;
 
 const api = axios.create({
-    baseURL,
+    baseURL: API_URL,
     withCredentials: false,
 });
 
@@ -70,7 +71,9 @@ api.interceptors.response.use(
             isRefreshing = true;
 
             try {
-                const response = await axios.post(`${baseURL}token/refresh/`, {
+                // 🔑 Use the BASE_URL (without /api/) for the refresh endpoint,
+                // as this post request is being made by the base axios instance.
+                const response = await axios.post(`${BASE_URL}/api/token/refresh/`, {
                     refresh: refreshToken,
                 });
 
