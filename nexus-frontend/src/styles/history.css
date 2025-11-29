@@ -1,0 +1,27 @@
+/* src/styles/history.css */
+.history-container {
+  max-width: 980px;
+  margin: 2.6em auto;
+  padding: 0 16px;
+}
+
+.history-list {
+  display: grid;
+  gap: 1rem;
+}
+
+/* history card tuned */
+.history-card {
+  padding: 1.1rem;
+  border-radius: 12px;
+}
+
+/* small responsive */
+@media (max-width: 720px) {
+  .history-container {
+    margin: 1em;
+  }
+  .history-card {
+    padding: 0.9rem;
+  }
+}

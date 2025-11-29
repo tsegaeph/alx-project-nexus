@@ -1,0 +1,77 @@
+.seller-sidebar {
+  display: flex;
+  flex-direction: column;
+  background: radial-gradient(circle, rgba(59,130,246,0.15) 0%, rgba(3,6,20,0) 70%);
+  border-top-right-radius: 20px;
+  min-width: 220px;
+  max-width: 250px;
+  min-height: 100vh;
+  height: 100vh;
+  padding: 2.1rem 20px 1rem 20px;
+  box-shadow: 0 8px 24px 0 rgba(18,33,55,.23);
+  border-right: 1.2px solid #2343b1;
+  position: fixed;
+  left: 0;
+  top: 0;
+  z-index: 10;
+}
+
+.sidebar-title {
+  font-size: 1.16em;
+  font-weight: 600;
+  margin-bottom: 2.5em;
+  color: #92a4ce;
+}
+
+.seller-sidebar ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.seller-sidebar li {
+  margin-bottom: 1.4em;
+}
+
+.seller-sidebar li.active a {
+  background: linear-gradient(90deg,#2343b8 60%,#3366ec 100%);
+  color: #fff;
+  box-shadow: 0 0 16px #2a83ef66;
+}
+
+.seller-sidebar a {
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  font-size: 1rem;
+  padding: 0.7em 1em;
+  border-radius: 10px;
+  color: #c3cae2;
+  transition: background 0.15s, color 0.15s;
+}
+
+.seller-sidebar a:hover {
+  background: #294c88;
+  color: #7ad7fa;
+}
+
+.icon {
+  margin-right: 12px;
+  font-size: 1.18em;
+}
+
+.sidebar-logout {
+  color: #f77;
+  font-weight: 600;
+  margin-top: 1.4em;
+  border-radius: 10px;
+  padding: 0.7em 1em;
+  text-decoration: none;
+  background: none;
+  border: none;
+  transition: background 0.13s;
+  display: block;
+  width: 100%;
+  cursor: pointer;
+}
+.sidebar-logout:hover { background: #590606; color: #fff; }

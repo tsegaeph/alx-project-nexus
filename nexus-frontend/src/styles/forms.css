@@ -1,0 +1,25 @@
+input, select, textarea {
+  background: rgba(34,50,110,0.15);
+  border-radius: 12px;
+  border: 1.8px solid #2342d8;
+  color: #fff;
+  padding: 0.9em 1.1em;
+  font-size: 1rem;
+  margin-bottom: 1em;
+  transition: border 0.2s;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+input:focus, select:focus, textarea:focus {
+  border-color: #38bdf8;
+  box-shadow: 0 0 8px #38bdf855;
+}
+
+label {
+  display: block;
+  margin-bottom: 5px;
+  color: #b8c1f0;
+  font-size: 0.93rem;
+  font-weight: 500;
+}

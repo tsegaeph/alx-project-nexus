@@ -1,0 +1,18 @@
+.neon-btn {
+  padding: 0.68em 2em;
+  border: none;
+  border-radius: 13px;
+  background: linear-gradient(90deg,#1a5185 45%,#081d64 100%);
+  color: #fff;
+  box-shadow: 0 0 18px #216886aa,0 0 4px #1c427777;
+  font-weight: 500;
+  font-size: 1.06rem;
+  cursor: pointer;
+  letter-spacing: 0.02em;
+  transition: background 0.17s, box-shadow 0.17s;
+}
+
+.neon-btn:hover, .neon-btn:focus {
+  background: linear-gradient(90deg,#1a5185 20%,#081d64 100%);
+  box-shadow: 0 0 18px #38bdf8ee,0 0 8px #288be5aa;
+}

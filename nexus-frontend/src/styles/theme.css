@@ -1,0 +1,195 @@
+/* Variables for the Deep Blue Theme */
+:root {
+  --bg-deep: #030614;
+  --blue-primary: #0f1a36;
+  --blue-accent: #3b82f6;
+  --neon-cyan: #00f2ff;
+  --glass-border: rgba(255, 255, 255, 0.08);
+  --text-main: rgb(128, 134, 206);
+  --text-muted: #94a3b8;
+}
+
+body {
+  margin: 0;
+  background-color: var(--bg-deep);
+  font-family: 'Inter', sans-serif; /* Ensure you have a nice font imported */
+  overflow-x: hidden;
+}
+
+/* The Main Container */
+.landing-container {
+  min-height: 100vh;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 5%;
+  overflow: hidden;
+}
+
+/* Background Mesh Gradients */
+.bg-glow {
+  position: absolute;
+  width: 600px;
+  height: 600px;
+  background: radial-gradient(circle, rgba(59,130,246,0.15) 0%, rgba(3,6,20,0) 70%);
+  border-radius: 50%;
+  z-index: 0;
+  animation: pulse-glow 8s infinite alternate;
+}
+
+.glow-1 { top: -10%; left: -10%; }
+.glow-2 { bottom: -10%; right: -10%; background: radial-gradient(circle, rgba(0,242,255,0.1) 0%, rgba(3,6,20,0) 70%); }
+
+/* Glass Navbar (Optional but recommended for pro look) */
+.navbar {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  padding: 2rem 5%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  z-index: 10;
+  box-sizing: border-box;
+}
+
+.brand-logo {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--text-main);
+  letter-spacing: 1px;
+}
+
+/* Hero Section Layout */
+.hero-wrapper {
+  display: flex;
+  flex-direction: row; /* Split layout */
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  max-width: 1200px;
+  z-index: 1;
+  gap: 2rem;
+}
+
+/* Left Side: Content */
+.hero-content {
+  flex: 1;
+  max-width: 550px;
+  animation: fade-in-up 1s ease-out;
+}
+
+.hero-tagline {
+  color: var(--neon-cyan);
+  font-size: 0.9rem;
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  margin-bottom: 1rem;
+  display: block;
+  font-weight: 600;
+}
+
+.hero-title {
+  font-size: 4rem;
+  line-height: 1.1;
+  margin-bottom: 1.5rem;
+  background: linear-gradient(to right, #fff, #94a3b8);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.hero-desc {
+  font-size: 1.1rem;
+  color: var(--text-muted);
+  line-height: 1.6;
+  margin-bottom: 2.5rem;
+}
+
+.cta-group {
+  display: flex;
+  gap: 1.5rem;
+}
+
+/* Right Side: Immersive Visual */
+.hero-visual {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  position: relative;
+  perspective: 1000px; /* Adds 3D depth */
+}
+
+/* The "Card" holding the product/image */
+.visual-card {
+  width: 100%;
+  max-width: 500px;
+  background: rgba(255, 255, 255, 0.03);
+  backdrop-filter: blur(10px);
+  border: 1px solid var(--glass-border);
+  border-radius: 20px;
+  padding: 2rem;
+  transform: rotateY(-10deg) rotateX(5deg); /* 3D tilt */
+  transition: transform 0.3s ease;
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+  animation: float 6s ease-in-out infinite;
+}
+
+.visual-card:hover {
+  transform: rotateY(0deg) rotateX(0deg) scale(1.02);
+}
+
+.visual-image {
+  width: 100%;
+  height: auto;
+  display: block;
+  filter: drop-shadow(0 0 20px rgba(59, 130, 246, 0.4));
+}
+
+/* Animations */
+@keyframes float {
+  0% { transform: translateY(0px) rotateY(-10deg); }
+  50% { transform: translateY(-20px) rotateY(-10deg); }
+  100% { transform: translateY(0px) rotateY(-10deg); }
+}
+
+@keyframes pulse-glow {
+  0% { opacity: 0.5; transform: scale(1); }
+  100% { opacity: 0.8; transform: scale(1.2); }
+}
+
+@keyframes fade-in-up {
+  from { opacity: 0; transform: translateY(30px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.dashboard-content{
+  margin-top: 7em;
+}
+
+.order-summary{
+  color: rgb(176, 183, 243);
+}
+
+/* Responsive Mobile */
+@media (max-width: 968px) {
+  .hero-wrapper {
+    flex-direction: column-reverse;
+    text-align: center;
+    padding-top: 4rem;
+  }
+  
+  .hero-content {
+    align-items: center;
+  }
+  
+  .cta-group {
+    justify-content: center;
+  }
+
+  .visual-card {
+    transform: none; /* Remove 3D tilt on mobile for readability */
+    animation: float 6s ease-in-out infinite;
+  }
+}

@@ -1,0 +1,114 @@
+/* CustomerNavbar.css */
+
+.customer-navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 2rem;
+  /* Use the glass style from your theme */
+  background: rgba(3, 6, 20, 0.7); 
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 100;
+  box-sizing: border-box;
+}
+
+/* Center Search */
+.navbar-center {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  max-width: 40em;
+  margin: 0 2rem;
+}
+
+.search-wrapper {
+  position: relative;
+  width: 100%;
+  display: flex;
+  align-items: center;
+}
+
+.search-icon {
+  position: absolute;
+  left: 0.8em;
+  bottom: 1.6em;
+  color: #94a3b8;
+  pointer-events: none;
+}
+
+.search-input {
+  width: 100%;
+  padding: 10px 10px 10px 40px; /* Space for icon */
+  border-radius: 50px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: rgba(255, 255, 255, 0.05);
+  color: #fff;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+  outline: none;
+}
+
+.search-input:focus {
+  background: rgba(255, 255, 255, 0.1);
+  border-color: #3b82f6; /* Blue Accent */
+  box-shadow: 0 0 15px rgba(59, 130, 246, 0.3);
+}
+
+/* Right Icons */
+.navbar-right {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.navbar-icon-link {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  text-decoration: none;
+  color: #94a3b8;
+  transition: color 0.2s ease;
+  font-size: 1rem;
+  font-weight: 600;
+}
+
+.navbar-icon-link:hover {
+  color: #3bf5ec;
+}
+
+.navbar-icon-link svg {
+  transition: transform 0.2s;
+}
+
+.navbar-icon-link:hover svg {
+  transform: scale(1.1);
+  stroke: #00f2ff; /* Cyan glow on hover */
+}
+
+/* Badge */
+.cart-badge {
+  position: absolute;
+  top: -8px;
+  right: -8px;
+  background: #ff3b3b;
+  color: white;
+  font-size: 0.7rem;
+  font-weight: bold;
+  height: 18px;
+  width: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  box-shadow: 0 0 5px rgba(255, 59, 59, 0.5);
+}
+
+/* Mobile Responsive */
+@media (max-width: 768px) {
+  .link-text { display: none; } /* Hide text, keep icons */
+  .navbar-center { margin: 0 1rem; }
+}
