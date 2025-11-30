@@ -162,10 +162,14 @@ CSRF_TRUSTED_ORIGINS = [
     "http://127.0.0.1:3000"
 ]
 
+# config/settings.py
+
+CLOUDINARY_URL = os.environ.get('CLOUDINARY_URL')
+
 DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
 
-CLOUDINARY_CLOUD_NAME = os.environ.get('CLOUDINARY_CLOUD_NAME')   
-CLOUDINARY_API_KEY = os.environ.get('CLOUDINARY_API_KEY')   
-CLOUDINARY_API_SECRET = os.environ.get('CLOUDINARY_API_SECRET')
-
-MEDIA_URL = f'https://res.cloudinary.com/{CLOUDINARY_CLOUD_NAME}/'
+try:
+    CLOUD_NAME_FROM_URL = CLOUDINARY_URL.split('@')[-1]
+    MEDIA_URL = f'https://res.cloudinary.com/{CLOUD_NAME_FROM_URL}/'
+except:
+    MEDIA_URL = '/media/fallback/'
