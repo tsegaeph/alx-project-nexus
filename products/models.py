@@ -30,7 +30,7 @@ class Product(models.Model):
     weight = models.DecimalField(max_digits=6, decimal_places=2, null=True, blank=True)
     dimensions = models.CharField(max_length=100, blank=True)
 
-    main_image = models.ImageField(upload_to='products/', blank=True, null=True)
+    main_image = models.ImageField(upload_to="products/main/", blank=True, null=True)
     created_at = models.DateTimeField(auto_now_add=True)
 
     seller_phone = models.CharField(max_length=20, blank=True, null=True)
@@ -52,7 +52,7 @@ class Product(models.Model):
 
 class ProductImage(models.Model):
     product = models.ForeignKey(Product, on_delete=models.CASCADE, related_name='images')
-    image = models.ImageField(upload_to='products/gallery/')
+    image = models.ImageField(upload_to="products/gallery/")
     created_at = models.DateTimeField(auto_now_add=True)
 
     class Meta:

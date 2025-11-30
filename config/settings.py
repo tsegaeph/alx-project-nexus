@@ -2,9 +2,6 @@ import os
 from pathlib import Path
 import environ
 from datetime import timedelta
-import cloudinary
-import cloudinary.uploader
-import cloudinary.api
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 env = environ.Env(DEBUG=(bool, False))
@@ -37,7 +34,6 @@ INSTALLED_APPS = [
     "products",
     "accounts",
     "orders",
-    'cloudinary',
 ]
 
 MIDDLEWARE = [
@@ -98,7 +94,6 @@ AUTH_PASSWORD_VALIDATORS = [
     {"NAME": "django.contrib.auth.password_validation.NumericPasswordValidator"},
 ]
 
-# Internationalization
 LANGUAGE_CODE = "en-us"
 TIME_ZONE = "UTC"
 USE_I18N = True
@@ -107,9 +102,14 @@ USE_TZ = True
 STATIC_URL = "/static/"
 STATIC_ROOT = BASE_DIR / "staticfiles"
 
+STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
+
+MEDIA_URL = '/media/'
+MEDIA_ROOT = BASE_DIR / 'media'
+
+
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
-# DRF + Simple JWT + Pagination + Filters
 REST_FRAMEWORK = {
     'DEFAULT_SCHEMA_CLASS': 'drf_spectacular.openapi.AutoSchema',
     'DEFAULT_FILTER_BACKENDS': [
@@ -127,19 +127,12 @@ REST_FRAMEWORK = {
     ],
 }
 
-
-# drf-spectacular (OpenAPI/Swagger)
 SPECTACULAR_SETTINGS = {
     "TITLE": "ALX Project Nexus — E-commerce API",
     "DESCRIPTION": "E-commerce backend API (Django + DRF)",
     "VERSION": "1.0.0",
 }
 
-# Simple JWT config (lifetimes taken from env if present)
-ACCESS_MINUTES = int(env("SIMPLE_JWT_ACCESS_LIFETIME_MIN", default=30))
-REFRESH_DAYS = int(env("SIMPLE_JWT_REFRESH_LIFETIME_DAYS", default=7))
-
-from datetime import timedelta
 SIMPLE_JWT = {
     'ACCESS_TOKEN_LIFETIME': timedelta(hours=2),
     'REFRESH_TOKEN_LIFETIME': timedelta(days=7),
@@ -150,7 +143,7 @@ AUTH_USER_MODEL = 'accounts.User'
 
 CORS_ALLOWED_ORIGINS = [
     "https://alx-project-nexus-production-3d80.up.railway.app",
-    "https://nexus-project.up.railway.app", 
+    "https://nexus-project.up.railway.app",
 ]
 
 CORS_ALLOW_CREDENTIALS = True
@@ -159,26 +152,3 @@ CSRF_TRUSTED_ORIGINS = [
     "http://localhost:3000",
     "http://127.0.0.1:3000"
 ]
-
-# Cloudinary storage
-DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
-
-CLOUDINARY_STORAGE = {
-    'CLOUD_NAME': env('CLOUDINARY_CLOUD_NAME'),
-    'API_KEY': env('CLOUDINARY_API_KEY'),
-    'API_SECRET': env('CLOUDINARY_API_SECRET'),
-    'UPLOAD_OPTIONS': {
-        'resource_type': 'image',
-        'folder': 'products/',   # all product images go here
-        'overwrite': False,
-    }
-}
-
-cloudinary.config(
-    cloud_name=env('CLOUDINARY_CLOUD_NAME'),
-    api_key=env('CLOUDINARY_API_KEY'),
-    api_secret=env('CLOUDINARY_API_SECRET'),
-)
-
-MEDIA_URL = f"https://res.cloudinary.com/{env('CLOUDINARY_CLOUD_NAME')}/"
-MEDIA_ROOT = None
