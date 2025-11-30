@@ -245,10 +245,92 @@ export default function AddProduct() {
             </div>
           </div>
 
-          {/* PRODUCT FORM */}
+           {/* PRODUCT FORM */}
           <form onSubmit={handleSubmit} encType="multipart/form-data">
-            {/* rest of your form remains unchanged */}
-            ...
+            <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "2.2em", marginBottom: "1.5em" }}>
+              {/* LEFT SIDE */}
+              <div>
+                <label>Product Name <RequiredStar /></label>
+                <input name="name" type="text" value={form.name} onChange={handleChange} required />
+                
+                <label>Category <RequiredStar /></label>
+                <select name="category_id" value={form.category_id} onChange={handleChange} required>
+                  <option value="">
+                    {categories.length === 0 ? "Please create category first" : "Select Category"}
+                  </option>
+                  {categories.map((cat) => (
+                    <option key={cat.id} value={cat.id}>
+                      {cat.name}
+                    </option>
+                  ))}
+                </select>
+                
+                <label>Price <RequiredStar /></label>
+                <input name="price" type="number" min="0" step="0.01" value={form.price} onChange={handleChange} required />
+                
+                {/* Stock Quantity - Required in HTML but no * */}
+                <label>Stock Quantity</label> 
+                <input name="stock_quantity" type="number" min="0" value={form.stock_quantity} onChange={handleChange} required />
+                
+                <label>Seller Phone <RequiredStar /></label>
+                <input name="seller_phone" type="text" value={form.seller_phone} onChange={handleChange} placeholder="+2519xxxxxxx" required />
+                
+                <label>Shipping Fee ($) <RequiredStar /></label>
+                <input name="shipping_fee" type="number" min="0" step="0.01" value={form.shipping_fee} onChange={handleChange} required />
+                
+                <label>Tax Rate (%) <RequiredStar /></label>
+                <input name="tax_rate" type="number" min="0" step="0.01" value={form.tax_rate} onChange={handleChange} required />
+              </div>
+
+              {/* RIGHT SIDE */}
+              <div>
+                <label>Short Description <RequiredStar /></label>
+                <input name="short_description" type="text" value={form.short_description} onChange={handleChange} required />
+                
+                {/* Weight - Optional, no * */}
+                <label>Weight (kg)</label>
+                <input name="weight" type="number" min="0" step="0.01" value={form.weight} onChange={handleChange} />
+                
+                {/* Size - Optional, no * */}
+                <label>Size (if clothes)</label>
+                <input name="size" type="text" value={form.size} onChange={handleChange} />
+                
+                <div style={{ display: "flex", gap: "1em" }}>
+                  <div style={{ width: "33%" }}>
+                    {/* Dimensions - Optional, no * */}
+                    <label>Length</label>
+                    <input name="length" type="number" min="0" value={form.length} onChange={handleChange} />
+                  </div>
+                  <div style={{ width: "33%" }}>
+                    <label>Width</label>
+                    <input name="width" type="number" min="0" value={form.width} onChange={handleChange} />
+                  </div>
+                  <div style={{ width: "33%" }}>
+                    <label>Height</label>
+                    <input name="height" type="number" min="0" value={form.height} onChange={handleChange} />
+                  </div>
+                </div>
+                
+                <label style={{ marginTop: "1.2em" }}>Product Status <RequiredStar /></label>
+                <div style={{ display: "flex", gap: "2em", alignItems: "center" }}>
+                  <label style={{ display: "flex", alignItems: "center", gap: "0.6em" }}>
+                    <input type="radio" name="status" value="Active" checked={form.status === "Active"} onChange={handleChange} required />
+                    <span style={{ color: "#5aa4ff", fontWeight: 500 }}>In stock</span>
+                  </label>
+                  <label style={{ display: "flex", alignItems: "center", gap: "0.6em" }}>
+                    <input type="radio" name="status" value="Out of stock" checked={form.status === "Out of stock"} onChange={handleChange} required />
+                    <span style={{ color: "#b4a7d9", fontWeight: 500 }}>Out of stock</span>
+                  </label>
+                </div>
+              </div>
+            </div>
+
+            <label>Full Description <RequiredStar /></label>
+            <textarea name="description" rows={3} value={form.description} onChange={handleChange} required />
+
+            {error && <div style={{ color: "#f77", marginBottom: "1em" }}>{error}</div>}
+            {success && <div style={{ color: "#29cf7c", marginBottom: "1em" }}>{success}</div>}
+
             <NeonButton style={{ marginTop: "1.8em", width: "30%" }}>Add Product</NeonButton>
           </form>
         </div>
