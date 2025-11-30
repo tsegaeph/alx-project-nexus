@@ -79,7 +79,6 @@ class CategoryViewSet(viewsets.ModelViewSet):
                 'name': cat.name,
                 'description': cat.description,
                 'icon': cat.icon if hasattr(cat, 'icon') else None,
-                'is_active': cat.is_active,
                 'product_count': products_qs.count(),
                 'products': ProductSerializer(products_qs, many=True).data,
             })

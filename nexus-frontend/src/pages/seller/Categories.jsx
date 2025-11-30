@@ -26,13 +26,13 @@ export default function Categories() {
   const [categories, setCategories] = useState([]);
   const [products, setProducts] = useState([]);
   
-  // ✅ FIX: Set form.name to a predefined category for a better initial state
+  // 🔥 FIX: REMOVED is_active from initial state
   const [form, setForm] = useState({
     name: "Electronics", 
     customName: "",
     description: "",
     icon: ICONS[0].icon,
-    is_active: true
+    // is_active: true // REMOVED
   });
 
   const [error, setError] = useState("");
@@ -72,13 +72,14 @@ export default function Categories() {
   }
 
   function handleChange(e) {
-    const { name, value, type, checked } = e.target;
+    // 🔥 FIX: Removed type/checked logic for is_active
+    const { name, value } = e.target;
     setError(""); 
     setSuccess("");
 
     setForm(f => ({
       ...f,
-      [name]: type === "checkbox" ? checked : value
+      [name]: value
     }));
   }
 
@@ -94,11 +95,12 @@ export default function Categories() {
     let catName = form.name === "Other" ? form.customName : form.name;
     if (!catName) { setError("Category name required."); return; }
 
+    // 🔥 FIX: REMOVED is_active from API payload
     const data = {
       name: catName,
       description: form.description,
-      icon: form.icon, // Sending icon field
-      is_active: form.is_active // Sending is_active field
+      icon: form.icon,
+      // is_active: form.is_active // REMOVED
     };
 
     const token = localStorage.getItem("token");
@@ -109,12 +111,13 @@ export default function Categories() {
       setSuccess("Category created!");
       
       // Reset form to default state after successful creation
+      // 🔥 FIX: REMOVED is_active from reset state
       setForm({
         name: "Electronics", // Resetting to the default value
         customName: "",
         description: "",
         icon: ICONS[0].icon,
-        is_active: true
+        // is_active: true // REMOVED
       });
 
       await fetchAll();
@@ -251,7 +254,8 @@ export default function Categories() {
                 )}
               </div>
 
-              {/* is_active SWITCH */}
+              {/* 🔥 FIX: REMOVED is_active SWITCH from the form */}
+              {/*
               <label>Status</label>
               <div style={{ marginBottom: "0.4em" }}>
                 <label style={{ color: "#cbd6f5", fontSize: "0.9em" }}>
@@ -265,6 +269,7 @@ export default function Categories() {
                   Active
                 </label>
               </div>
+              */}
 
               {error && <div style={{ color: "#f77", marginBottom: "1em" }}>{error}</div>}
               {success && <div style={{ color: "#29cf7c", marginBottom: "1em" }}>{success}</div>}
@@ -307,6 +312,9 @@ export default function Categories() {
                         <div style={{ color: "#c0bcf2", fontSize: "0.9em" }}>
                           {stats.total} products
                         </div>
+                        {/* 🔥 FIX: The backend will default this field to TRUE if not sent. 
+                                 We assume active status for display or remove this line.
+                                 If the API sends it, we keep it for display.
                         <div style={{
                           color: cat.is_active ? "#29cf7c" : "#f77",
                           fontSize: "0.9em",
@@ -314,6 +322,7 @@ export default function Categories() {
                         }}>
                           {cat.is_active ? "Active" : "Inactive"}
                         </div>
+                        */}
                       </div>
                     </div>
 

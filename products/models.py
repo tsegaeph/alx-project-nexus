@@ -6,7 +6,6 @@ class Category(models.Model):
     name = models.CharField(max_length=120)
     description = models.TextField(blank=True)
     icon = models.CharField(max_length=10, blank=True, null=True) # Added icon field
-    is_active = models.BooleanField(default=True)
     created_at = models.DateTimeField(auto_now_add=True)
 
     class Meta:
