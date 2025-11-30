@@ -162,14 +162,21 @@ CSRF_TRUSTED_ORIGINS = [
     "http://127.0.0.1:3000"
 ]
 
-# config/settings.py
-
-CLOUDINARY_URL = os.environ.get('CLOUDINARY_URL')
-
+# Cloudinary storage
 DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
 
-try:
-    CLOUD_NAME_FROM_URL = CLOUDINARY_URL.split('@')[-1]
-    MEDIA_URL = f'https://res.cloudinary.com/{CLOUD_NAME_FROM_URL}/'
-except:
-    MEDIA_URL = '/media/fallback/'
+CLOUDINARY_STORAGE = {
+    'CLOUD_NAME': os.environ.get('CLOUDINARY_CLOUD_NAME'),
+    'API_KEY': os.environ.get('CLOUDINARY_API_KEY'),
+    'API_SECRET': os.environ.get('CLOUDINARY_API_SECRET'),
+}
+
+cloudinary.config(
+    cloud_name=os.environ.get('CLOUDINARY_CLOUD_NAME'),
+    api_key=os.environ.get('CLOUDINARY_API_KEY'),
+    api_secret=os.environ.get('CLOUDINARY_API_SECRET'),
+)
+
+# For Django to work normally (not used by Cloudinary)
+MEDIA_URL = '/media/'
+MEDIA_ROOT = BASE_DIR / 'media'
