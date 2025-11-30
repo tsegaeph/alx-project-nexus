@@ -48,7 +48,9 @@ class ProductViewSet(viewsets.ModelViewSet):
             
         serializer = self.get_serializer(queryset, many=True)
         return response.Response(serializer.data)
-
+   
+    def get_serializer_context(self):
+        return {'request': self.request}
 
 class CategoryViewSet(viewsets.ModelViewSet):
     queryset = Category.objects.select_related('owner').all() 
